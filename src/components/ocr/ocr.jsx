@@ -275,9 +275,9 @@ export default function IntegratedScanAI() {
       <div className="ocr-header">
         <h1
           className="header"
-          data-text={showUserProfile ? "User Health Profile Details" : "AI based OCR"}
+          data-text={showUserProfile ? "User Health Profile Details" : "AI Enchanced OCR"}
         >
-          {showUserProfile ? "User Health Profile Details" : "AI based OCR"}
+          {showUserProfile ? "User Health Profile Details" : "AI Enchanced OCR"}
         </h1>
         <div className="control-buttons">
           <button
