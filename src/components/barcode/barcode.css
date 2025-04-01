@@ -130,10 +130,7 @@ body {
 }
 
 .ocrlink{
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translate(0%, -50%);
+
   font-family: sans-serif;
   font-size: small;
   background-color: #6D9D39;

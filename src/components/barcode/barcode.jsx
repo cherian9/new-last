@@ -300,11 +300,7 @@ const BarcodeScanner = () => {
         </div>
       )}
 
-      {scanResult && !matchedBarcode && (
-        <div className="no-match-container">
-          <a className="ocrlink" href="/ocr">Try OCR Instead</a>
-        </div>
-      )}
+      
 
       <button
         onClick={handleScanAgain}
@@ -312,6 +308,11 @@ const BarcodeScanner = () => {
       >
         Scan Again
       </button>
+      {scanResult && !matchedBarcode && (
+        <div className="no-match-container">
+          <a className="ocrlink" href="/ocr">Try OCR Instead</a>
+        </div>
+      )}
     </div>
   );
 };
