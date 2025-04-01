@@ -193,3 +193,13 @@ body {
 .mute-button:active {
   transform: scale(0.95);
 }
+.matched-barcode-data{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ocr-btn{
+  width: fit-content;
+  background: #7fb93c;
+}
