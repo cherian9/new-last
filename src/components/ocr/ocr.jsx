@@ -35,6 +35,12 @@ export default function IntegratedScanAI() {
   const [isAIResponseReady, setIsAIResponseReady] = useState(false);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsAIResponseReady(true);
+    }, 4000);
+    return () => clearTimeout(timer);
+  }, []);
   // Add countdown timer effect
   useEffect(() => {
     let timer;
@@ -48,8 +54,8 @@ export default function IntegratedScanAI() {
         images.length === 0
           ? "Capture Ingredient"
           : images.length === 1
-          ? "Capture Nutritional Info"
-          : "Restart"
+            ? "Capture Nutritional Info"
+            : "Restart"
       );
     }
     return () => clearInterval(timer);
@@ -225,7 +231,7 @@ export default function IntegratedScanAI() {
         )
       );
       setScannedText(ocrResults.join("\n"));
-      
+
       // Play AI response sound when AI response is generated
       playAIResponseSound();
       vibrateAIResponse();
@@ -274,15 +280,15 @@ export default function IntegratedScanAI() {
           {showUserProfile ? "User Health Profile Details" : "AI based OCR"}
         </h1>
         <div className="control-buttons">
-          <button 
-            onClick={toggleVibration} 
+          <button
+            onClick={toggleVibration}
             className={`control-button ${isVibrationEnabled ? 'enabled' : 'disabled'}`}
             title={isVibrationEnabled ? "Disable vibration" : "Enable vibration"}
           >
             {isVibrationEnabled ? "📳" : "📴"}
           </button>
-          <button 
-            onClick={toggleMute} 
+          <button
+            onClick={toggleMute}
             className={`control-button ${isMuted ? 'muted' : ''}`}
             title={isMuted ? "Unmute sound" : "Mute sound"}
           >
@@ -304,7 +310,7 @@ export default function IntegratedScanAI() {
                 <div className="profile-name">
                   {userDetails.firstName} {userDetails.lastName}
                 </div>
-                <HiOutlineChevronUpDown size={19}/>
+                <HiOutlineChevronUpDown size={19} />
               </div>
               <div className={`profile-details ${showUserProfile ? "show" : ""}`}>
                 <div className="health-parameters">
@@ -365,31 +371,31 @@ export default function IntegratedScanAI() {
           )}
           <br />
           <div className="together">
-          <button
-            onClick={handleCaptureButtonClick}
-            disabled={loading}
-            className="capture-button"
-          >
-            {loading
-              ? `${buttonText} (${countdown}s)`
-              : images.length === 0
-              ? "Capture Ingredient"
-              : images.length === 1
-              ? "Capture Nutritional Info"
-              : "Restart"}
-          </button>
-          <br />
-          <label className="upload-button">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileUpload}
+            <button
+              onClick={handleCaptureButtonClick}
               disabled={loading}
-            />
-            {loading ? `Processing... (${countdown}s)` : "Choose File"}
-          </label>
+              className="capture-button"
+            >
+              {loading
+                ? `${buttonText} (${countdown}s)`
+                : images.length === 0
+                  ? "Capture Ingredient"
+                  : images.length === 1
+                    ? "Capture Nutritional Info"
+                    : "Restart"}
+            </button>
+            <br />
+            <label className="upload-button">
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileUpload}
+                disabled={loading}
+              />
+              {loading ? `Processing... (${countdown}s)` : "Choose File"}
+            </label>
           </div>
-          
+
           {images.length > 0 && (
             <div>
               <h2>Captured Images</h2>
@@ -412,7 +418,7 @@ export default function IntegratedScanAI() {
           <button
             onClick={handleRedirect}
             className="redirect-button result-button"
-            disabled={!isAIResponseReady}
+            disabled={!isAIResponseReady} // Enable after 4 sec
           >
             AI Analysis
           </button>
